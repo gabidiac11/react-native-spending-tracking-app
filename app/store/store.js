@@ -7,7 +7,7 @@ import { rootReducer, rootSaga } from "./reducers/rootReducer";
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const sagaMiddleware = createSagaMiddleware();
-const store = createStore(
+export const store = createStore(
     rootReducer,
     composeEnhancers(applyMiddleware(sagaMiddleware))
 );
@@ -16,8 +16,6 @@ const store = createStore(
  * @see https://github.com/rt2zz/redux-persist#persiststorestore-config-callback
  * @see https://github.com/rt2zz/redux-persist#persistor-object
  */
-export const persistor = persistStore(store);
 
 sagaMiddleware.run(rootSaga);
-
-export default store;
+export const persistor = persistStore(store);
