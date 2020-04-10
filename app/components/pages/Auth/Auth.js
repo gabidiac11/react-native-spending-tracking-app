@@ -2,8 +2,8 @@ import React from "react";
 import { View, Text, TextInput } from "react-native";
 import { connect } from "react-redux";
 import style from "./AuthStyle";
-import { actions } from "../../../store/reducers/auth";
-import * as Builder from "../../../store/reducers/builder";
+import { actions } from "../../../store/reducers/authReducer";
+import * as Builder from "../../../store/reducers/builderReducer";
 import { useSelector, useDispatch } from "react-redux";
 import { onSignUp, onSignIn } from "./authHelpers";
 
@@ -46,9 +46,9 @@ function Auth() {
     if (valid_email && valid_password) {
       setIsFetching(true);
       onSignIn(email, password).then(
-        ({ token }) => {
+        ({ token, uid }) => {
           setIsFetching(false);
-          dispatch(actions.login({ email, token }));
+          dispatch(actions.login({ email, token, uid }));
         },
         (err) => {
           setIsFetching(false);

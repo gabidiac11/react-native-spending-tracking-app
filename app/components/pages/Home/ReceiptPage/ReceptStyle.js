@@ -116,7 +116,6 @@ export default style = StyleSheet.create( {
     receipt_trash_button: {
         width: 50,
         backgroundColor: "black",
-        color: "red",
         height: "100%"
     },
     receipt_middle_side: {
@@ -173,19 +172,20 @@ export default style = StyleSheet.create( {
 
     },
     input_price: {
-        width: 40,
+        width: 100,
         height: 40,
         // backgroundColor: "white"
     },
     text_size_input: {
         fontSize: 20,
-
     }, 
     input_price_text: {
         height: 40,
         padding: 0,
         borderColor: "transparent",
-        borderWidth: 0
+        borderWidth: 0,
+        width: 100,
+        fontFamily: "Topic-Bold"
     },
     text_quantity: {
         width: 60,

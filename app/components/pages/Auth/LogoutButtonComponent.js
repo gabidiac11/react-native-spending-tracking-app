@@ -2,7 +2,7 @@ import React from "react";
 import { View, TouchableOpacity, Text } from "react-native";
 import { useDispatch } from "react-redux";
 
-import { actions } from "../../../store/reducers/auth";
+import { actions } from "../../../store/reducers/authReducer";
 
 export default function LogoutButton() {
   const dispatch = useDispatch();

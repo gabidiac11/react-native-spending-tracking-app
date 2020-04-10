@@ -47,7 +47,7 @@ export function onSignIn(email, password) {
         .then(function(token) {
           getUserInfo(user.uid).then(
             () => {
-              resolve({ token });
+              resolve({ token, uid: user.uid });
             },
             err => {
               console.log(err);
