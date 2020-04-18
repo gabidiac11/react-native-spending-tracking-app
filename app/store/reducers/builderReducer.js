@@ -1,6 +1,8 @@
 import { put, takeLatest } from "redux-saga/effects";
 import languagePack from "../../staticData/languagePack";
 import objectPath from "object-path";
+import _ from 'lodash';
+
 import static_app_data from "../../staticData/static_data";
 const initialState = {
   app_data: static_app_data,
@@ -8,12 +10,15 @@ const initialState = {
   statics: {
     languagePack: languagePack,
     defaultLang: 'en'
-  }
+  },
+  incQ: 1
 };
 const actionTypes = {
   RESET_CONFIG: "RESET_CONFIG",
   INIT_BUILD_DATA: "INIT_BUILD_DATA",
-  UPDATE_RECEIPT_WITH_ID: "UPDATE_RECEIPT_WITH_ID"
+  UPDATE_RECEIPT_WITH_ID: "UPDATE_RECEIPT_WITH_ID",
+  UPDATE_RECEIPT_PRODUCT_PROPERTY: "UPDATE_RECEIPT_PRODUCT_PROPERTY",
+  DELETE_RECEIPT_PRODUCT: "DELETE_RECEIPT_PRODUCT"
 };
 export const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
@@ -32,6 +37,42 @@ export const reducer = (state = initialState, { type, payload }) => {
         app_data: {...state.app_data, [payload.id_receipt]: payload.payload}
       }
     }
+    case actionTypes.UPDATE_RECEIPT_PRODUCT_PROPERTY: {
+      return {
+        ...state,
+        app_data: {
+          ...state.app_data,
+          receipts: {
+            ...state.app_data.receipts,
+            [payload.id_receipt]: {
+              ...state.app_data.receipts[payload.id_receipt],
+              products: {
+                ...state.app_data.receipts[payload.id_receipt].products,
+                [payload.id_product]: {
+                  ...state.app_data.receipts[payload.id_receipt].products[payload.id_product],
+                  [payload.property]: payload.value
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    case actionTypes.DELETE_RECEIPT_PRODUCT: {
+      return {
+        ...state,
+        app_data: {
+          ...state.app_data,
+          receipts: {
+            ...state.app_data.receipts,
+            [payload.id_receipt]: {
+              ...state.app_data.receipts[payload.id_receipt],
+              products: _.omit(state.app_data.receipts[payload.id_receipt].products, [payload.id_product])
+            }
+          }
+        }
+      }
+    }
     default:
       return state;
   }
@@ -39,7 +80,9 @@ export const reducer = (state = initialState, { type, payload }) => {
 export const actions = {
   reset_saga: payload => ({ payload, type: actionTypes.RESET_CONFIG }),
   init_build_data: payload => ({payload, type: actionTypes.INIT_BUILD_DATA}),
-  updateReceipt: payload => ({payload, type: actionTypes.UPDATE_RECEIPT_WITH_ID})
+  updateReceipt: payload => ({payload, type: actionTypes.UPDATE_RECEIPT_WITH_ID}),
+  updateReceiptProductProperty: payload => ({payload, type: actionTypes.UPDATE_RECEIPT_PRODUCT_PROPERTY}),
+  deleteReceiptProduct: payload => ({payload, type: actionTypes.DELETE_RECEIPT_PRODUCT}),
 };
 export function* saga() {
   yield takeLatest(actionTypes.RESET_CONFIG, function* reset_saga(action) {

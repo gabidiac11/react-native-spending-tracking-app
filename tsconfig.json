@@ -6,6 +6,11 @@
     "moduleResolution": "node",
     "noEmit": true,
     "skipLibCheck": true,
-    "resolveJsonModule": true
-  }
+    "resolveJsonModule": true,
+    "module": "es6",
+    "target": "ES6",
+    "baseUrl": "app"
+  },
+  "include": ["app"],
+  "exclude": ["node_modules"]
 }

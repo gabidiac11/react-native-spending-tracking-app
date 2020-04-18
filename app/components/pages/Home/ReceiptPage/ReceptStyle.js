@@ -21,7 +21,7 @@ function paddingOrMargin(a = 0, b = 0, c = 0, d = 0, type = "padding"){
     }
     return p;
 }
-export default style = StyleSheet.create( {
+export const style = StyleSheet.create( {
     __flex_all_center_row:{
         display: "flex",
         justifyContent: "center",
@@ -207,3 +207,59 @@ export default style = StyleSheet.create( {
         fontSize: 25
     }
 });
+export const hybridStyle = StyleSheet.create({
+    class_receipt_img_bg: {
+      ...style.generic_block_container,
+      ...style.receipt_bg_image
+    },
+    class_receipt_container: {
+      ...style.generic_block_container,
+      ...style.receiptContainer
+    },
+    class_store_name: {
+      ...style.generic_text,
+      ...style.receipt_store_title
+    },
+    class_receipt_address: { ...style.generic_text, ...style.receipt_address },
+    class_receipt_title: { ...style.generic_text, ...style.receipt_title },
+    class_receipt_products_cont: {
+      ...style.generic_block_container,
+      ...style.receipt_product_item_container,
+      ...style.receipt_line
+    },
+    class_receipt_prod_upper_side: {
+      ...style.generic_cont_justify,
+      ...style.receipt_prod_head
+    },
+    class_trash_button: {
+      ...style.receipt_trash_button
+    },
+    class_receipt_prod_middle_side: {
+      ...style.generic_cont_justify,
+      ...style.receipt_middle_side
+    },
+    class_receipt_middle_left: {
+      ...style.receipt_middle_left
+    },
+    class_receipt_quantity_btns_cont: {
+      ...style.increase_btns_cont
+    },
+    class_receipt_q_btn: {
+      ...style.inc_btn
+    },
+    class_receipt_date: {
+      ...style.generic_text,
+      ...style.receipt_date_cont
+    },
+    class_receipt_date_cont: {
+      ...style.generic_cont_center,
+      ...style.receipt_line
+    },
+    class_receipt_line: {
+      ...style.generic_cont_justify,
+      ...style.receipt_line
+    },
+    class_name_input_price: {
+      ...style.input_price
+    }
+  });
