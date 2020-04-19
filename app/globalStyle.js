@@ -20,13 +20,13 @@ export function paddingOrMargin(a = 0, b = 0, c = 0, d = 0, type = "padding"){
     return p;
 }
 export const globalStyle = StyleSheet.create( {
-    __flex_all_center_row:{
+    __flex_all_center_row: {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "row"
     },
-    generic_text:{
+    generic_text: {
         fontFamily: "Topic-Bold",
         fontSize: 18,
         color: "black"
@@ -43,11 +43,23 @@ export const globalStyle = StyleSheet.create( {
     pageContainer: {
         alignItems: "center",
     },
-    headerTitle: {
+    headerTitleContainer: {
+        backgroundColor: "red",
         display: 'flex',
-        flex: 1,
-        backgroundColor: "blue",
-        alignSelf: 'stretch',
-        justifyContent: 'space-between'
-    }
+        flexDirection: "row",
+        justifyContent: 'space-between',
+        width: "100%"
+    },
+    headerTitle: {
+        
+    },
+    headerLeftContainerStyle: {
+        width: 100,
+        // backgroundColor: "green"
+    },
+    headerRightContainerStyle: {
+        width: 100,
+        // backgroundColor: "green",
+        paddingRight: 10
+    },
 });

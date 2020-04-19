@@ -18,7 +18,8 @@ const actionTypes = {
   INIT_BUILD_DATA: "INIT_BUILD_DATA",
   UPDATE_RECEIPT_WITH_ID: "UPDATE_RECEIPT_WITH_ID",
   UPDATE_RECEIPT_PRODUCT_PROPERTY: "UPDATE_RECEIPT_PRODUCT_PROPERTY",
-  DELETE_RECEIPT_PRODUCT: "DELETE_RECEIPT_PRODUCT"
+  DELETE_RECEIPT_PRODUCT: "DELETE_RECEIPT_PRODUCT",
+  SET_INC_Q: "SET_INC_Q"
 };
 export const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
@@ -73,6 +74,12 @@ export const reducer = (state = initialState, { type, payload }) => {
         }
       }
     }
+    case actionTypes.SET_INC_Q: {
+      return {
+        ...state,
+        incQ: payload.incQ
+      }
+    }
     default:
       return state;
   }
@@ -83,6 +90,7 @@ export const actions = {
   updateReceipt: payload => ({payload, type: actionTypes.UPDATE_RECEIPT_WITH_ID}),
   updateReceiptProductProperty: payload => ({payload, type: actionTypes.UPDATE_RECEIPT_PRODUCT_PROPERTY}),
   deleteReceiptProduct: payload => ({payload, type: actionTypes.DELETE_RECEIPT_PRODUCT}),
+  setIncQ: payload => ({payload, type: actionTypes.SET_INC_Q})
 };
 export function* saga() {
   yield takeLatest(actionTypes.RESET_CONFIG, function* reset_saga(action) {

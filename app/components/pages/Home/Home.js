@@ -49,16 +49,26 @@ class Home extends Component {
   init = () => {
     const firebase_instance = new FirebaseDatabase(this.props.uid);
     this.setState({ isFetching: true, error: null });
-    firebase_instance.init().then(
-      data => {
-        this.props.initBuilderAppData({...data});
-        this.setState({ isFetching: false });
-      },
-      error => {
-        console.log(error);
-        this.setState({ error, isFetching: false });
-      }
-    );
+    const promise = new Promise((resolve, reject) => {
+      firebase_instance.init().then(
+        data => {
+         console.log(data);
+         resolve(data);
+        },
+        error => {
+          reject(error);
+        }
+      );
+    })
+    promise.then(data => {
+      console.log(data, "doi");
+      this.props.initBuilderAppData({...data});
+      this.setState({ isFetching: false });
+    },
+    error => {
+      console.log(error);
+      this.setState({ error, isFetching: false });
+    })
   };
   componentDidMount = () => {
     

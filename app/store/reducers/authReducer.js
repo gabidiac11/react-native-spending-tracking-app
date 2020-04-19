@@ -7,7 +7,7 @@ export const actionTypes = {
   LOGOUT: "LOGOUT"
 };
 const initialAuthState = {
-  user: undefined,
+  user: {},
   token: undefined
 };
 export const selectors = {

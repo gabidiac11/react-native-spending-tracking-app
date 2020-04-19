@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Text, TextInput } from "react-native";
-import { connect } from "react-redux";
 import style from "./AuthStyle";
 import { actions } from "../../../store/reducers/authReducer";
 import * as Builder from "../../../store/reducers/builderReducer";

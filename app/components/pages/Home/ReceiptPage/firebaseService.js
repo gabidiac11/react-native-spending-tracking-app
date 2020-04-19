@@ -30,7 +30,7 @@ export default class FirebaseService {
       });
   };
   onChangeReceiptProductQuantity = ({ id_receipt, id_product, quantity }) => {
-    if(quantity < 1){
+    if(quantity <= 0){
       database()
       .ref(`${this.receiptsUserPath}/${id_receipt}/products`)
       .update({ [id_receipt]: null })

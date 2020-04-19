@@ -41,10 +41,11 @@ export const style = StyleSheet.create( {
         
     },
     receipt_bg_image: {
-        // flex: 1,
-        // width: '100%',
         marginBottom: 10
     },
+    background_image: {
+        alignSelf: 'stretch'
+    },  
     flat_list_container: {
         
         alignSelf: "stretch",
@@ -54,24 +55,48 @@ export const style = StyleSheet.create( {
         
     },
     receiptContainer: {
-        paddingLeft: 30,
-        paddingRight:30,
+        alignSelf: "stretch",
+        paddingLeft: 20,
+        paddingRight:20,
         paddingTop: 10,
-        paddingBottom: 20
+        paddingBottom: 20,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        backgroundColor: 'white'
     },
     receipt_product_item_container: {
-        // height: 20
-        paddingLeft: 0,
-        paddingRight: 0,
-        paddingTop: 10,
-        paddingBottom: 10,
+        alignSelf: 'stretch',
         marginBottom: 10,
-        paddingBottom: 10
+        paddingTop: 15,
+        paddingBottom: 20,
+        paddingLeft: 10,
+        paddingRight: 10,
+        borderTopColor: "rgba(0, 0, 0, 0.3)",
+        borderTopWidth: 5,
+        borderTopEndRadius: 10,
+        borderTopLeftRadius: 10,
+        borderBottomEndRadius: 10,
+        borderBottomLeftRadius: 10,
+        backgroundColor: '#f5ffff',
+        ...(() => {
+            const pr = {color:"rgba(0,0,0,0.06)", width: 2};
+            return {
+                borderLeftColor: pr.color,
+                borderRightColor: pr.color,
+                borderLeftWidth: pr.width,
+                borderRightWidth: pr.width
+            }
+        })(),
+        shadowOffset:{  width: 5,  height: 5,  },
+        shadowColor: 'black',
+        shadowOpacity: 1.0,
     },
     receipt_address: {
         textAlign: "center",
         paddingLeft: 30,
-        paddingRight: 30
+        paddingRight: 30,
+        fontSize: 15
     },
     receipt_store_title: {
         textAlign: "center",
@@ -99,13 +124,18 @@ export const style = StyleSheet.create( {
         borderStyle: 'dotted',
         flexDirection: "row"
     },
+    product_receipt_name: {
+        fontSize: 22
+    }, 
     receipt_date_cont: {
         paddingTop: 20,
         paddingBottom: 10
     },
     receipt_line: {
-        paddingTop: 3,
-        paddingBottom: 3
+        paddingTop: 5,
+        paddingBottom: 5,
+        paddingLeft: 10,
+        paddingRight: 10,
     },
     receipt_prod_head: {
         height: 30,
@@ -114,9 +144,8 @@ export const style = StyleSheet.create( {
         alignItems: "flex-start"
     },
     receipt_trash_button: {
-        width: 50,
+        width: 25,
         backgroundColor: "black",
-        height: "100%"
     },
     receipt_middle_side: {
         minHeight: 40,
@@ -188,7 +217,7 @@ export const style = StyleSheet.create( {
         fontFamily: "Topic-Bold"
     },
     text_quantity: {
-        width: 60,
+        width: "auto",
         // backgroundColor: 'blue',
         height: 20
     },
@@ -204,7 +233,12 @@ export const style = StyleSheet.create( {
         
     },
     product_text_total: {
-        fontSize: 25
+        fontSize: 20,
+        width: 30,
+        textAlign: 'center'
+    },
+    label_line: {
+        fontSize: 20
     }
 });
 export const hybridStyle = StyleSheet.create({
@@ -224,8 +258,8 @@ export const hybridStyle = StyleSheet.create({
     class_receipt_title: { ...style.generic_text, ...style.receipt_title },
     class_receipt_products_cont: {
       ...style.generic_block_container,
+      ...style.receipt_line,
       ...style.receipt_product_item_container,
-      ...style.receipt_line
     },
     class_receipt_prod_upper_side: {
       ...style.generic_cont_justify,

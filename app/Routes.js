@@ -6,8 +6,10 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Home from "./components/pages/Home/Home";
 import Auth from "./components/pages/Auth/Auth";
 
-import Header from "./components/pages/Home/Header/Header";
-import { globalStyle } from "app/globalStyle";
+import Header, { HeaderLeft, HeaderRight } from "./components/pages/Home/Header/Header";
+import { globalStyle } from "./globalStyle";
+import { View } from "react-native";
+
 
 const Stack = createStackNavigator();
 
@@ -20,7 +22,7 @@ export function Routes() {
       },
     }) => ({
       isLoggingOut,
-      isAuth: user != null,
+      isAuth: user.uid != null,
       languagePackEn: languagePack["en"],
     })
   );
@@ -41,8 +43,14 @@ export function Routes() {
           <Stack.Screen
             name="Home"
             options={{
-              headerTitle: () => <Header />,
-              headerStyle: globalStyle.headerTitle,
+              headerLeftContainerStyle: globalStyle.headerLeftContainerStyle,
+              headerRightContainerStyle: globalStyle.headerRightContainerStyle,
+              headerLeft: () => (<HeaderLeft/>),
+              headerRight: () => (<HeaderRight/>),
+              headerTitle: null,
+              // // headerStyle: globalStyle.headerTitle,
+              // headerTitleContainerStyle: globalStyle.headerTitleContainer
+              // header: globalStyle
             }}
             component={Home}
           />

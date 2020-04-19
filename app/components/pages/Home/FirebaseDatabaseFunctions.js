@@ -5,27 +5,50 @@ export default class FirebaseDataBase {
         this.uid = uid
     }
     init = () => {
+        const data = {};
         return new Promise((resolve, reject) => {
-            const data = {};
-            const promise = this.getReceipts();
-            promise.then(
-                (receipts) => {
-                    data["receipts"] = receipts;
-                    this.getStores().then((stores) => {
-                        data["stores"] = stores;
-                        resolve(data);
-                    },
-                    (err) => {
-                        reject(err);
-                    })
-                },
-                (err) => {
-                    reject(err);
-                }
-            );
-        });
-
+            this.getReceipts().then((receipts) => resolve(receipts));
+          }).then((receipts) => {
+            data['receipts'] = receipts;
+            return this.getStores();
+          }).then((stores) => {
+            data['stores'] = stores;
+            return this.getTvas();
+          }).then(tvas => {
+            data['tvas'] = tvas;
+            return new Promise((resolve, reject) => resolve(data));
+          });
     }
+    // init = () => {
+    //     return new Promise((resolve, reject) => {
+    //         const data = {};
+    //         this.getReceipts().then((receipts) => resolve(receipts))
+    //         this.getReceipts().then(
+    //             (receipts) => {
+    //                 data["receipts"] = receipts;
+                    
+    //                 this.getStores().then((stores) => {
+    //                     data["stores"] = stores;
+    //                     return this.getTvas().then((tvas) => {
+    //                         data['tvas'] = tvas;
+    //                         console.log(data);
+    //                         resolve(data);
+    //                     }, 
+    //                     (err) => {
+    //                         reject(err)
+    //                     })
+    //                 },
+    //                 (err) => {
+    //                     reject(err);
+    //                 })
+    //             },
+    //             (err) => {
+    //                 reject(err);
+    //             }
+    //         );
+    //     });
+
+    // }
     getReceipts = () => {
         return new Promise((resolve, reject)=>{
             firebase.database().ref(`/receipts/${this.uid}`)
@@ -44,6 +67,16 @@ export default class FirebaseDataBase {
             })
         });
     }
-
+    getTvas = () => {
+        return new Promise((resolve, reject) => {
+            firebase.database().ref(`/tvas`)
+            .on("value", snapshot => {
+                const tvas = snapshot.val() || {};
+                console.log(tvas);
+                resolve(tvas);
+                
+            })
+        });
+    }
     
 } 

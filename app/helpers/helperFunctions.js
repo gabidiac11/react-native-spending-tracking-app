@@ -20,3 +20,10 @@ export const generateFloatNumberAndTextNumber = (text) => {
     }
     return {floatNumber, textNumber};
 }
+export const reduceNumberMatisse = (number, digits = 2) => {
+  let tenth = 1;
+  for(let i = 0; i < digits; i++){
+    tenth *= 10;
+  }
+  return Math.floor(number * tenth)/tenth;
+}
