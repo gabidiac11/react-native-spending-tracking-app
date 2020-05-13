@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "G:\\projects\\tutorial_app\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v18\\values-v18.xml",
+            "outputFile": "D:\\1. PROJECTS\\incercare\\spendingTracking\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v18\\values-v18.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Gabi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-1.1.0.aar\\118640d528e604cd266bb61d4d31b1eb\\res\\values-v18\\values-v18.xml",
+                    "source": "C:\\Users\\gabi\\.gradle\\caches\\transforms-2\\files-2.1\\2b7e6ebaa515cd43f42fb356f0d1941c\\appcompat-1.1.0\\res\\values-v18\\values-v18.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

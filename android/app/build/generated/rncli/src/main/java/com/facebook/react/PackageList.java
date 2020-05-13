@@ -10,8 +10,8 @@ import com.facebook.react.shell.MainReactPackage;
 import java.util.Arrays;
 import java.util.ArrayList;
 
-import com.spending_application.BuildConfig;
-import com.spending_application.R;
+import com.spendingtracking.BuildConfig;
+import com.spendingtracking.R;
 
 // @react-native-community/async-storage
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
