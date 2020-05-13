@@ -1,5 +1,5 @@
 export default {
-    "pCategories" : [],
+    "productCategory" : [],
     "productPriceFluctuation" : {},
     "receipts" : {},
     "stores" : {},

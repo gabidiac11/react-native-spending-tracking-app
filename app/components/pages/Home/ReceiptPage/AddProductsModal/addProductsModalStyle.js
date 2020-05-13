@@ -5,9 +5,11 @@ const product_line = {
   marginTop: 10,
   marginBottom: 10,
 };
+const modalSidePadding = 10;
+
 const button_container = {
     flex: 1,
-    width: '100%',
+    width: 50,
     height: 50,
     marginTop: 5,
     // backgroundColor: 'red'
@@ -33,7 +35,7 @@ export default StyleSheet.create({
   },
   productContainer: {
       flex: 1,
-      padding: 10
+      padding: modalSidePadding
   },
   product_name: {
       ...product_line,
@@ -63,7 +65,7 @@ export default StyleSheet.create({
       ...globalStyle.generic_text,
   },
   right_container: {
-      width: 45,
+      width: 55,
     //   backgroundColor: 'green'
   },
   substractButton: {
@@ -81,11 +83,38 @@ export default StyleSheet.create({
   addButton: {
       ...button_container,
   },
-  submit_button: {
-      width: '100%',
-      height: 50
+
+  action_buttons_container: {
+    width: '100%',
+    height: 50,
+    display: 'flex',
+    flexDirection: 'row',
+    paddingLeft: modalSidePadding,
+    paddingRight: modalSidePadding,
+    paddingBottom: 10,
+    backgroundColor: 'white'
+  },
+  submit_button:  {
+    width: 130,
+    height: "100%",
+    borderTopEndRadius: 30,
+    borderBottomLeftRadius: 20
   },
   submit_button_text: {
     fontSize: 20
+  },
+  show_product_form: {
+    height: "100%",
+    flex: 1,
+    borderTopEndRadius: 20,
+    borderBottomLeftRadius: 30,
+    backgroundColor: '#ba8900'
+  },
+  add_btn_: {
+    backgroundColor: '#24b300'
+  },
+  go_back_btn_: {
+    // backgroundColor: '#d1d1d1',
+    // color: 'black'
   }
 });

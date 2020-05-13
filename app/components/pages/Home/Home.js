@@ -3,11 +3,11 @@ import ReceiptPage from "./ReceiptPage/ReceiptPage";
 import StatsPage from "./StatsPage/StatsPage";
 import StoresPage from "./StoresPage/StoresPage";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { View, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity, Text } from "react-native";
 
 import { actions } from "../../../store/reducers/builderReducer";
 import Loader from "./../../LayoutSplashScreen";
-import FirebaseDatabase from "./FirebaseDatabaseFunctions";
+import { firebaseInstance, FirebaseServiceContext } from "./../../firebaseService";
 
 const Tab = createBottomTabNavigator();
 
@@ -15,26 +15,32 @@ import { connect } from "react-redux";
 
 function mapDispatchToProps(dispatch) {
   return {
-    initBuilderAppData: (
-      {receipts = {},
-      pCategories = [],
+    initBuilderAppData: ({
+      receipts = {},
+      productCategory = [],
       productPriceFluctuation = {},
       stores = {},
-      tvas = {}}
-    ) => {
-      dispatch(actions.init_build_data({
-        pCategories,
-        productPriceFluctuation,
-        receipts,
-        stores,
-        tvas
-      }));
-    }
+      tvas = {},
+    }) => {
+      dispatch(
+        actions.init_data({
+          productCategory,
+          productPriceFluctuation,
+          receipts,
+          stores,
+          tvas,
+        })
+      );
+    },
   };
 }
-function mapStateToProps({auth:{user:{uid}}}) {
+function mapStateToProps({
+  auth: {
+    user: { uid },
+  },
+}) {
   return {
-   uid 
+    uid,
   };
 }
 class Home extends Component {
@@ -42,44 +48,40 @@ class Home extends Component {
     super(props);
     this.state = {
       error: null,
-      isFetching: false
+      isFetching: false,
     };
+    this.firebaseInstance = firebaseInstance;
   }
-  firebase_instance;
   init = () => {
-    const firebase_instance = new FirebaseDatabase(this.props.uid);
+    this.firebaseInstance.setUid(this.props.uid);
     this.setState({ isFetching: true, error: null });
     const promise = new Promise((resolve, reject) => {
-      firebase_instance.init().then(
-        data => {
-         console.log(data);
-         resolve(data);
+      this.firebaseInstance.initializeData().then(
+        (data) => {
+          console.log(data);
+          resolve(data);
         },
-        error => {
+        (error) => {
           reject(error);
         }
       );
-    })
-    promise.then(data => {
-      console.log(data, "doi");
-      this.props.initBuilderAppData({...data});
-      this.setState({ isFetching: false });
-    },
-    error => {
-      console.log(error);
-      this.setState({ error, isFetching: false });
-    })
+    });
+    promise.then(
+      (data) => {
+        this.props.initBuilderAppData({ ...data });
+        this.setState({ isFetching: false });
+      },
+      (error) => {
+        console.log(error);
+        this.setState({ error, isFetching: false });
+      }
+    );
   };
   componentDidMount = () => {
-    
-    console.log(this.props.uid, "uid");
     this.init();
-  };
+  }
   render() {
-    const {
-      error,
-      isFetching
-    } = this.state;
+    const { error, isFetching } = this.state;
     return (
       <>
         {error ? (
@@ -99,14 +101,19 @@ class Home extends Component {
         ) : isFetching ? (
           <Loader text={"Loading firebase data..."} />
         ) : (
-          <Tab.Navigator>
-            <Tab.Screen name="Receipts" component={ReceiptPage} />
-            <Tab.Screen name="Stats" component={StatsPage} />
-            <Tab.Screen name="Stores" component={StoresPage} />
-          </Tab.Navigator>
+          <FirebaseServiceContext.Provider value={{ firebaseService: this.firebaseInstance }}>
+            <Tab.Navigator>
+              <Tab.Screen name="Receipts" component={ReceiptPage} />
+              <Tab.Screen name="Stats" component={StatsPage} />
+              <Tab.Screen name="Stores" component={StoresPage} />
+            </Tab.Navigator>
+          </FirebaseServiceContext.Provider>
         )}
       </>
     );
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home);

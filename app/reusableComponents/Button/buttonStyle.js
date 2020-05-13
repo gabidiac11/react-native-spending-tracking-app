@@ -15,10 +15,9 @@ export default StyleSheet.create({
     text: {
         ...globalStyle.generic_text,
         color: "white",
-        textAlign: "center",
-        textAlignVertical: "center",
         width: '100%',
         height: '100%',
-
+        textAlignVertical: "center",
+        textAlign: "center"
     }
 })

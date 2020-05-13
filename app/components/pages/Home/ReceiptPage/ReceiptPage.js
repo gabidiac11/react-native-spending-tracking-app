@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useContext } from "react";
 import {
   SafeAreaView,
   View,
@@ -17,8 +17,9 @@ import {
   generateFloatNumberAndTextNumber,
   reduceNumberMatisse,
 } from "./../../../../helpers/helperFunctions";
-import FirebaseService from "./firebaseService";
-import AddProductsModal from "./AddProductsModal/AddProductsModal";
+
+import AddProductsModal from './AddProductsModal/AddProductsModal';
+import { FirebaseServiceContext } from "../../../firebaseService";
 
 export default function ReceiptPage(props) {
   const dispatch = useDispatch();
@@ -41,11 +42,13 @@ export default function ReceiptPage(props) {
       };
     }
   );
-
-  const firebaseService = new FirebaseService({ uid, dispatch });
-  
+  const firebaseContext = useContext(FirebaseServiceContext);
+  const {firebaseService} = firebaseContext;
   const [local_price_modifyed, set_local_price_modifyed] = React.useState({});
-  const [modalStoreId, setModalStoreId] = React.useState();
+  const [modalStoreAndReceiptId, setModalStoreAndReceiptId] = React.useState({
+    id_store: undefined, id_receipt: undefined
+    // id_store: "04fb7ac4-f003-46c0-a8eb-7cca7ba075ef", id_receipt: "-LvfXZ3084XxTZl2yQXV"
+  });
   
   let keys = Object.keys(receipts);
   for (let i = 0; i < keys.length; i++) {
@@ -64,7 +67,7 @@ export default function ReceiptPage(props) {
     { id_product, id_receipt }
   ) => {
     const { textNumber, floatNumber } = generateFloatNumberAndTextNumber(text);
-    firebaseService.onUpdateReceiptProductPrice({
+    firebaseService.updateAndDispatch(dispatch).onUpdateReceiptProductPrice({
       id_receipt,
       id_product,
       price: floatNumber,
@@ -82,36 +85,60 @@ export default function ReceiptPage(props) {
           100
       ) / 100;
     console.log(quantity);
-    firebaseService.onChangeReceiptProductQuantity({
+    firebaseService.updateAndDispatch(dispatch).onChangeReceiptProductQuantity({
       id_receipt,
       id_product,
       quantity,
     });
   };
   const onDeleteReceiptProduct = ({ id_receipt, id_product }) => {
-    firebaseService.onChangeReceiptProductQuantity({
+    firebaseService.updateAndDispatch(dispatch).onChangeReceiptProductQuantity({
       id_receipt,
       id_product,
       quantity: 0,
     });
   };
-  const onOpenAddProductsModal = (id_store) => {
-    setModalStoreId(id_store);
+  const onOpenAddProductsModal = ({id_store, id_receipt}) => {
+    setModalStoreAndReceiptId({id_store, id_receipt});
   }
-  const onCloseAddProductsModal = () => {
-    setModalStoreId(undefined);
+  const assignStoreProductsToReceipt = (selectedInstances) => {
+    if(Object.keys(selectedInstances).length > 0) {
+      const {
+        id_store,
+        id_receipt
+      } = modalStoreAndReceiptId;
+      const update_quantity_paths = {};
+      const receiptProductsArr = Object.entries(receipts[id_receipt].products || {}).map(([id_product, product]) => ({id_product, ...product}));
+    
+      const storeProducts = stores[id_store].products;
+      const selectedProducts = [];
+      Object.entries(selectedInstances).forEach(([referenceId, quantity]) => {
+        const existingReceiptProduct = receiptProductsArr.find(product => (product.referenceId === referenceId));
+        if(existingReceiptProduct) {
+          update_quantity_paths[`${existingReceiptProduct.id_product}/quantity`] = quantity + (existingReceiptProduct.quantity || 0);
+        }else{
+          selectedProducts.push({
+            ...storeProducts[referenceId],
+            referenceId,
+            quantity: quantity
+          })
+        }
+      })
+      firebaseService.updateAndDispatch(dispatch).onSubmitProductsToReceipt({id_receipt, selectedProducts, update_quantity_paths});
+    }
+    setModalStoreAndReceiptId({id_store: undefined, id_receipt: undefined});
   }
   return (
     <>
     <AddProductsModal
-        isModalVisible={modalStoreId !== undefined}
-        products={!modalStoreId ? [] : Object.entries(stores[modalStoreId].products || {}).map(([store_id_product, product]) => ({
+        isModalVisible={modalStoreAndReceiptId.id_store !== undefined}
+        products={!modalStoreAndReceiptId.id_store ? [] : Object.entries(stores[modalStoreAndReceiptId.id_store].products || {}).map(([store_id_product, product]) => ({
           ...product,
           store_id_product,
           tvaPercent: tvas[product.tva],
         }))}
-        id_store={modalStoreId}
-        onSelectProduct={onCloseAddProductsModal}
+        id_store={modalStoreAndReceiptId.id_store}
+        submitProducts={(selectedInstances) => assignStoreProductsToReceipt(selectedInstances)}
       />
     <SafeAreaView
       style={{ ...style.generic_block_container, ...style.pageContainer }}
@@ -144,7 +171,7 @@ export default function ReceiptPage(props) {
                 <Text style={hybridStyle.class_receipt_title}>BON FISCAL</Text>
 
                 <Button
-                  onPress={() => onOpenAddProductsModal(storeId)}
+                  onPress={() => onOpenAddProductsModal({id_store: storeId, id_receipt})}
                   rightIcon={{ name: "cart-plus", size: 20 }}
                   content={"Add products "}
                   textStyle={{ fontSize: 23 }}

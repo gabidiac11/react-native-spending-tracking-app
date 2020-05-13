@@ -2,16 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d03fc97-d333-49cc-ba37-bc94e30f3399" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpendingApp.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app.json" beforeDir="false" afterPath="$PROJECT_DIR$/../app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/components/LayoutSplashScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../app/components/LayoutSplashScreen.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/store/reducers/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/store/reducers/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/store/reducers/builder.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/store/reducers/builder.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/store/reducers/rootReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/store/reducers/rootReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/store/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/store/store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/components/pages/Auth/AuthStyle.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/components/pages/Auth/AuthStyle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/components/pages/Home/FirebaseDatabaseFunctions.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/components/pages/Home/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/components/pages/Home/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/components/pages/Home/ReceiptPage/AddProductsModal/AddProductsModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/components/pages/Home/ReceiptPage/AddProductsModal/AddProductsModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/components/pages/Home/ReceiptPage/AddProductsModal/addProductsModalStyle.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/components/pages/Home/ReceiptPage/AddProductsModal/addProductsModalStyle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/components/pages/Home/ReceiptPage/ReceiptPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/components/pages/Home/ReceiptPage/ReceiptPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/components/pages/Home/ReceiptPage/firebaseService.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/reusableComponents/Button/buttonStyle.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/reusableComponents/Button/buttonStyle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/staticData/static_data.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/staticData/static_data.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/store/reducers/builderReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/store/reducers/builderReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/style/globals.js" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -52,8 +59,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -65,10 +70,13 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="ProjectPane" />
       <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
@@ -101,25 +109,25 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <layout>
-      <window_info id="Capture Tool" />
-      <window_info active="true" content_ui="combo" id="Project" visible="true" weight="0.2840617" />
-      <window_info id="Structure" side_tool="true" />
-      <window_info id="Build Variants" side_tool="true" />
-      <window_info id="Image Layers" />
-      <window_info id="Designer" />
-      <window_info id="Resources Explorer" />
-      <window_info id="Favorites" side_tool="true" />
       <window_info id="Captures" order="0" weight="0.25" />
-      <window_info anchor="bottom" id="TODO" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Build" visible="true" weight="0.30417228" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Gradle" />
-      <window_info anchor="right" id="Theme Preview" />
-      <window_info anchor="right" id="Assistant" visible="true" weight="0.2840617" />
-      <window_info anchor="right" id="Palette&#9;" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.28791773" />
+      <window_info id="Structure" order="2" side_tool="true" />
+      <window_info id="Build Variants" order="3" side_tool="true" />
+      <window_info id="Image Layers" order="4" />
+      <window_info id="Designer" order="5" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info id="Resources Explorer" order="7" />
+      <window_info id="Favorites" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="0" />
+      <window_info anchor="bottom" id="TODO" order="1" />
+      <window_info anchor="bottom" id="Terminal" order="2" />
+      <window_info anchor="bottom" id="Event Log" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Build" order="4" visible="true" weight="0.30417228" />
+      <window_info anchor="right" id="Capture Analysis" order="0" />
+      <window_info anchor="right" id="Gradle" order="1" />
+      <window_info anchor="right" id="Theme Preview" order="2" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info anchor="right" id="Assistant" order="4" visible="true" weight="0.2840617" />
     </layout>
   </component>
 </project>

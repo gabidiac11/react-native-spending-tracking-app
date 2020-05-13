@@ -8,17 +8,19 @@ import Button from "./../../../../../reusableComponents/Button/Button";
 import { reduceNumberMatisse } from "../../../../../helpers/helperFunctions";
 
 import style, { constants } from "./addProductsModalStyle";
-import { TouchableOpacity } from "react-native-gesture-handler";
-
+import { TouchableOpacity } from "react-native";
+import { CreateProductManager } from "../CreateProductManager/CreateProductManager";
+ 
 export default AddProductModal = ({
   id_store,
   products,
   isModalVisible,
-  onSelectProduct,
+  submitProducts,
 }) => {
   const [selectedInstances, setSelectedInstances] = React.useState({});
   const [submitButton, setSubmitButton] = React.useState({});
-  
+  const [showProductForm, setShowProductForm] = React.useState(true);
+
   React.useEffect(() => {
     setSelectedInstances({});
   }, [id_store]);
@@ -27,8 +29,7 @@ export default AddProductModal = ({
     setSubmitButton(
         numOfSelectedInstances > 0 ?
         {
-        content: `${` Add selected products [${numOfSelectedInstances} ITEMS]`}`,
-        icon: { name: "plus-circle", size: 20 },
+        content: `Add [${Object.entries(selectedInstances).reduce((sum, [refId, quantity]) => (sum + quantity), 0)}]`
         
       }
     : {
@@ -56,9 +57,16 @@ export default AddProductModal = ({
           }
       }
   }
+  function toggleProductForm(){
+    setShowProductForm(!showProductForm)
+  }
+  function onSubmitProducts(){
+    submitProducts(Object.assign({}, selectedInstances));
+  }
   return (
     <Modal isVisible={isModalVisible} style={style.modal}>
       <View style={{ flex: 1 }}>
+        
         <FlatList
           style={{ ...style.listContainer }}
           data={products}
@@ -69,10 +77,10 @@ export default AddProductModal = ({
             return (
               <View style={style.productContainer}>
                 
-                <TouchableOpacity style={style.bottom_container} 
-                    onPress={() => setNumberOfProductInstance(store_id_product, 1)}
+                <View style={style.bottom_container} 
+                    
                 >
-                  <View style={style.left_container}>
+                  <TouchableOpacity style={style.left_container} onPress={() => setNumberOfProductInstance(store_id_product, 1)}>
                     <Text style={style.product_name}>
                         <Icon name={utility ? "thumbs-up" : "thumbs-down"} size={15} color={"black"} /> {name}
                     </Text>
@@ -82,7 +90,7 @@ export default AddProductModal = ({
                     >{`TVA - ${tva} - ${tvaPercent}% - ${reduceNumberMatisse(
                       (tvaPercent / 100) * price
                     )}`}</Text>
-                  </View>
+                  </TouchableOpacity>
                   <View style={style.right_container}>
                     <Button
                       onPress={numOfInstances > 0 ? () => setNumberOfProductInstance(store_id_product, -1) : () => {}}
@@ -105,19 +113,35 @@ export default AddProductModal = ({
                       content={numOfInstances > 0 ? `${numOfInstances}+` : ""}
                     />
                   </View>
-                </TouchableOpacity>
+                </View>
               </View>
             );
           }}
           keyExtractor={(item) => item.store_id_product}
         />
+        {showProductForm && <CreateProductManager key={id_store} id_store={id_store}/>}
+        <View style={style.action_buttons_container}>
         <Button
-          containerStyle={style.submit_button}
+          containerStyle={{
+            ...style.submit_button,
+            ...(Object.keys(selectedInstances).length > 0 ? 
+              style.add_btn_ : style.go_back_btn_
+            )
+          }}
           textStyle={style.submit_button_text}
           leftIcon={submitButton.icon}
           content={submitButton.content}
-          onPress={onSelectProduct}
+          onPress={onSubmitProducts}
         />
+         <Button
+          containerStyle={style.show_product_form}
+          textStyle={style.sub}
+          rightIcon={{name: showProductForm ? 'angle-down' : 'angle-up'} }
+          content={"Create new product "}
+          onPress={toggleProductForm}
+        />
+        </View>
+        
       </View>
     </Modal>
   );
