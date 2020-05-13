@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "G:\\projects\\tutorial_app\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v16\\values-v16.xml",
+            "outputFile": "D:\\1. PROJECTS\\incercare\\spending_tracking_react_native\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v16\\values-v16.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Gabi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-1.1.0.aar\\118640d528e604cd266bb61d4d31b1eb\\res\\values-v16\\values-v16.xml",
+                    "source": "C:\\Users\\gabi\\.gradle\\caches\\transforms-2\\files-2.1\\2b7e6ebaa515cd43f42fb356f0d1941c\\appcompat-1.1.0\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Gabi\\.gradle\\caches\\transforms-1\\files-1.1\\core-1.1.0.aar\\2d6abd5e5e1a07902a835fc5c587ee71\\res\\values-v16\\values-v16.xml",
+                    "source": "C:\\Users\\gabi\\.gradle\\caches\\transforms-2\\files-2.1\\4f509a65121478d6153615d7ef5b7c5f\\core-1.1.0\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

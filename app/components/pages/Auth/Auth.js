@@ -20,13 +20,13 @@ function Auth() {
   }));
   const [showRegisterForm, setShowRegisterForm] = React.useState(true);
   const [loginFormData, setLoginFormData] = React.useState({
-    email: "",
-    password: ""
+    email: "gabidiac11@gmail.com",
+    password: "123456"
   });
   const [registerFormData, setRegisterFormData] = React.useState({
     email: "gabidiac11@gmail.com",
-    password: "12345",
-    confirmPassword: "12345"
+    password: "123456",
+    confirmPassword: "123456"
   });
   const [errorMessage, setErrorMessage] = React.useState();
   const [successMessage, setSuccessMessage] = React.useState();
@@ -62,6 +62,7 @@ function Auth() {
     }
   }
   function tryRegister() {
+    console.log("hei")
     const { email, password, confirmPassword } = registerFormData;
     const valid_email = validateEmail(email);
     const valid_password = password !== "";

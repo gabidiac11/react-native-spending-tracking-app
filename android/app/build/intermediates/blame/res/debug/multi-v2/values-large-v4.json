@@ -1,10 +1,20 @@
 {
     "logs": [
         {
-            "outputFile": "G:\\projects\\tutorial_app\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-large-v4\\values-large-v4.xml",
+            "outputFile": "D:\\1. PROJECTS\\incercare\\spending_tracking_react_native\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-large-v4\\values-large-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Gabi\\.gradle\\caches\\transforms-1\\files-1.1\\material-1.1.0.aar\\fe3e3b4d76346d06da04a4de1f525b90\\res\\values-large-v4\\values-large-v4.xml",
+                    "source": "C:\\Users\\gabi\\.gradle\\caches\\transforms-2\\files-2.1\\2b7e6ebaa515cd43f42fb356f0d1941c\\appcompat-1.1.0\\res\\values-large-v4\\values-large-v4.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,114,185,256,326,396,464,532,636",
+                        "endColumns": "58,70,70,69,69,67,67,103,115",
+                        "endOffsets": "109,180,251,321,391,459,527,631,747"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\gabi\\.gradle\\caches\\transforms-2\\files-2.1\\7b4521e09033db39989053c4a0984cc2\\material-1.1.0\\res\\values-large-v4\\values-large-v4.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -18,16 +28,6 @@
                         "startOffsets": "752,874",
                         "endColumns": "121,133",
                         "endOffsets": "869,1003"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Gabi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-1.1.0.aar\\118640d528e604cd266bb61d4d31b1eb\\res\\values-large-v4\\values-large-v4.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10",
-                        "startColumns": "4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,114,185,256,326,396,464,532,636",
-                        "endColumns": "58,70,70,69,69,67,67,103,115",
-                        "endOffsets": "109,180,251,321,391,459,527,631,747"
                     }
                 }
             ]

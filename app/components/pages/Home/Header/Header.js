@@ -1,8 +1,8 @@
 import React from "react";
 import { View, TouchableOpacity, Text } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { actions as builderActions } from "app/store/reducers/builderReducer";
-import { actions as authActions } from "app/store/reducers/authReducer";
+import { actions as builderActions } from "./../../../../store/reducers/builderReducer";
+import { actions as authActions } from "./../../../../store/reducers/authReducer";
 
 import style from "./HeaderStyle";
 import Button from "../../../../reusableComponents/Button/Button";
